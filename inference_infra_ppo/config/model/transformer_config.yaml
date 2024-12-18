@@ -1,0 +1,35 @@
+# Transformer Model Configuration for PPO Inference
+
+model_params:
+  # Embedding dimensions
+  hidden_dim: 512
+  vocab_size: 50257  # GPT-2 vocabulary size
+  max_position_embeddings: 1024
+
+  # Attention parameters
+  num_attention_heads: 8
+  attention_dropout: 0.1
+  attention_head_dim: 64  # hidden_dim / num_attention_heads
+
+  # MLP parameters
+  mlp_hidden_dim: 2048  # 4x hidden_dim as per common practice
+  mlp_dropout: 0.1
+
+  # Layer parameters
+  num_layers: 1  # Single layer as specified
+  layer_norm_epsilon: 1e-5
+
+# PPO specific parameters
+ppo_params:
+  clip_range: 0.2
+  value_clip_range: 0.2
+  entropy_coef: 0.01
+  value_loss_coef: 0.5
+  max_grad_norm: 0.5
+
+# Inference optimization parameters
+inference_params:
+  batch_size: 32
+  num_warps: 4
+  num_stages: 2
+  num_threads: 1024
